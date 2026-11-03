@@ -17,6 +17,7 @@ type CategoryResponse struct {
 	Description string `json:"description"`
 	IsActive    bool   `json:"is_active"`
 }
+
 type CreateProductRequest struct {
 	CategoryID  uint    `json:"category_id" binding:"required"`
 	Name        string  `json:"name" binding:"required"`

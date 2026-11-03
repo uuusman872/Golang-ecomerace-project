@@ -112,6 +112,26 @@ func (s *Server) SetupRoutes() *gin.Engine {
 	api.GET("/categories", s.getCategory)
 	api.GET("/products", s.getProducts)
 	api.GET("/products/:id", s.getProduct)
+
+	gqlHandler := s.graphqlHandler()
+
+	router.GET("/playground", s.playgroundHandler())
+	router.GET("/playground/protected", s.playgroundProtectedHandler())
+
+	publicGQL := router.Group("/graphql/public")
+	publicGQL.Use(s.optionalAuthMiddleware(), s.graphqlMiddleware())
+	{
+		publicGQL.POST("", gqlHandler)
+		publicGQL.GET("", gqlHandler)
+	}
+
+	protectedGQL := router.Group("/graphql")
+	protectedGQL.Use(s.authMiddleware(), s.graphqlMiddleware())
+	{
+		protectedGQL.POST("", gqlHandler)
+		protectedGQL.GET("", gqlHandler)
+	}
+
 	return router
 }
 

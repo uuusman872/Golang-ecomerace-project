@@ -1,0 +1,39 @@
+package resolver
+
+import (
+	"strconv"
+
+	service "github.com/uuusman872/learning-go-shop/internal/services"
+)
+
+// This file will not be regenerated automatically.
+//
+// It serves as dependency injection for your app, add any dependencies you require here.
+
+type Resolver struct {
+	authService    *service.AuthService
+	userService    *service.UserService
+	productService *service.ProductService
+	cartService    *service.CartService
+	orderService   *service.OrderService
+}
+
+func NewResolver(
+	authService *service.AuthService,
+	userService *service.UserService,
+	productService *service.ProductService,
+	cartService *service.CartService,
+	orderService *service.OrderService) *Resolver {
+	return &Resolver{
+		authService:    authService,
+		userService:    userService,
+		productService: productService,
+		cartService:    cartService,
+		orderService:   orderService,
+	}
+}
+
+func (r *Resolver) parseID(id string) (uint, error) {
+	parsed, err := strconv.ParseUint(id, 10, 32)
+	return uint(parsed), err
+}

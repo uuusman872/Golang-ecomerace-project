@@ -114,9 +114,9 @@ func (s *AuthService) generateAuthResponse(user *models.User) (*dto.AuthResponse
 		return nil, err
 	}
 
-	err = s.eventPublisher.Publish(notifications.UserLoggedIn, user, map[string]string{})
-	if err != nil {
-		return nil, fmt.Errorf("unable to publish user login event: %w", err)
+	if err := s.eventPublisher.Publish(notifications.UserLoggedIn, user, map[string]string{}); err != nil {
+		// Auth should succeed even if the notification bus is unavailable.
+		fmt.Printf("unable to publish user login event: %v\n", err)
 	}
 
 	return &dto.AuthResponse{

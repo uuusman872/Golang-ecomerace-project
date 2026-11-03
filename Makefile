@@ -55,3 +55,7 @@ docker-logs:
 
 swagger:
 	swag init -g cmd/api/main.go -o docs --parseInternal
+
+graph-generate:
+	@go get github.com/99designs/gqlgen@v0.17.78
+	@go run github.com/99designs/gqlgen generate
