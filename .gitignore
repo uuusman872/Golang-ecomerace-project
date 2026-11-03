@@ -1,1 +1,41 @@
-    
+# Binaries
+bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Environment / secrets
+.env
+.env.local
+.env.*.local
+
+# Uploads / local data
+uploads/
+tmp/
+*.log
+
+# IDE / editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Go / tooling
+vendor/
+coverage.out
+coverage.html
+*.coverprofile
+profile.cov
+
+# Debug
+debug
+__debug_bin*

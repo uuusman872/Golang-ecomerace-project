@@ -1,4 +1,4 @@
-package model
+package models
 
 import (
 	"time"
@@ -18,8 +18,8 @@ type Order struct {
 	UpdatedAt time.Time      `json:"updated_at"`
 	DeletedAt gorm.DeletedAt `json:"-" gorm:"index"`
 
-	User      User        `json:"user"`
-	OrderItem []OrderItem `json:"order_items"`
+	User       User        `json:"user"`
+	OrderItems []OrderItem `json:"order_items"`
 }
 
 const (

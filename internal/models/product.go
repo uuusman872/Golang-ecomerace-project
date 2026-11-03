@@ -1,4 +1,4 @@
-package model
+package models
 
 import (
 	"time"
@@ -20,7 +20,7 @@ type Category struct {
 
 type Product struct {
 	ID          uint           `json:"id"            gorm:"primaryKey"`
-	CategoryId  uint           `json:"category_id"   gorm:"not null"`
+	CategoryID  uint           `json:"category_id" gorm:"not null"`
 	Name        string         `json:"name"          gorm:"not null"`
 	Description string         `json:"description"`
 	Price       float64        `json:"price"         gorm:"not null"`
@@ -38,7 +38,6 @@ type Product struct {
 	CartItem  []CartItem     `json:"-"`
 }
 
-
 type ProductImage struct {
 	ID        uint           `json:"id"         gorm:"primaryKey"`
 	ProductID uint           `json:"product_id" gorm:"not null;index"`
@@ -50,5 +49,3 @@ type ProductImage struct {
 
 	Product Product `json:"-"`
 }
-
-

@@ -1,0 +1,12 @@
+.git
+.idea
+.bin
+bin
+uploads
+docs/swagger.json
+**/*_test.go
+*.md
+collections
+.env
+.agent-transcripts
+**/terminals
